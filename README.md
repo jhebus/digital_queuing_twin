@@ -11,7 +11,7 @@ A single-file discrete-event simulator for **edge computing** with:
 - **Sweeps** over parameters with CSV export and optional plotting.
 - **Debug logging** (throttled) so you can trace the event flow without drowning in logs.
 
-> Main file: `edge_queue_sim_all_in_one.py` (Python 3.8+).  
+> Main file: `sim.py` (Python 3.8+).  
 > No third‑party deps unless you want plots (`matplotlib`).
 
 ---
