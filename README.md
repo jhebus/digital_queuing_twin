@@ -20,7 +20,7 @@ A single-file discrete-event simulator for **edge computing** with:
 
 **Single run (quiet):**
 ```bash
-python edge_queue_sim_all_in_one.py single \
+python sim.py single \
   --lam 4.5 --p-short 0.8 \
   --mu-short 1.0 --mu-long 10.0 \
   --policy jsq \
@@ -29,14 +29,14 @@ python edge_queue_sim_all_in_one.py single \
 
 **Single run (debug every 100th event):**
 ```bash
-python edge_queue_sim_all_in_one.py --log-level DEBUG --debug-every 100 single \
+python sim.py --log-level DEBUG --debug-every 100 single \
   --lam 4.5 --policy jsq --net-delay-mean 0.2
 ```
 _Global flags can be placed **before or after** the subcommand._
 
 **Sweep (λ × policy), save CSV and plot:**
 ```bash
-python edge_queue_sim_all_in_one.py sweep \
+python sim.py sweep \
   --lam 3,4,5,6 \
   --policy local,jsq,threshold:3,prob:0.3 \
   --net-delay-mean 0.2 \
@@ -131,7 +131,7 @@ Sweeps return a list of rows (printed as JSON), and can be saved to CSV via `--c
 
 **1) JSQ with latency, quiet**
 ```bash
-python edge_queue_sim_all_in_one.py single \
+python sim.py single \
   --lam 4.5 --p-short 0.8 \
   --mu-short 1.0 --mu-long 10.0 \
   --policy jsq \
@@ -140,20 +140,20 @@ python edge_queue_sim_all_in_one.py single \
 
 **2) Threshold policy with small latency**
 ```bash
-python edge_queue_sim_all_in_one.py single \
+python sim.py single \
   --lam 5.0 --policy threshold:3 --net-delay-mean 0.1
 ```
 
 **3) Debug run (logs every 50th event)**
 ```bash
-python edge_queue_sim_all_in_one.py single \
+python sim.py single \
   --lam 4.0 --policy jsq --net-delay-mean 0.2 \
   --log-level DEBUG --debug-every 50
 ```
 
 **4) Sweep λ × policy, CSV + plot**
 ```bash
-python edge_queue_sim_all_in_one.py sweep \
+python sim.py sweep \
   --lam 3,4,5,6 \
   --policy local,jsq,threshold:3,prob:0.3 \
   --net-delay-mean 0.2 \
@@ -164,7 +164,7 @@ python edge_queue_sim_all_in_one.py sweep \
 
 **5) Programmatic API**
 ```python
-from edge_queue_sim_all_in_one import EdgeQueueSim, policy_jsq, exp_time
+from sim import EdgeQueueSim, policy_jsq, exp_time
 
 sim = EdgeQueueSim(
     n_servers=3,
@@ -199,6 +199,6 @@ print(out["metrics"])
 - `argument mode: invalid choice: 'DEBUG' ...`  
   In this version, global flags work **before or after** the subcommand (e.g., `--log-level DEBUG single ...` or `single ... --log-level DEBUG`). If you still see this, make sure you didn’t accidentally put `DEBUG` where the subcommand should go.
 
-- “Code Interpreter session expired” (ChatGPT sandbox reset): re‑upload `edge_queue_sim_all_in_one.py` or copy/paste from this chat and re‑run.
+- “Code Interpreter session expired” (ChatGPT sandbox reset): re‑upload `sim.py` or copy/paste from this chat and re‑run.
 
 Happy simulating!
